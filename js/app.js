@@ -1,153 +1,193 @@
-// function randomInRange(min, max){
-//     var range = max - min ;
-//     var rand = (Math.random() * range) + min ;
-//     return Math.ceil (rand) ;
-//     //to get random number between two numbers
-//  }
-//  var header1 = document.createElement('h1');
-//  header1.textContent = 'Hi there';
-//  var contentArea = document.getElementById ('content-area');
-//  contentArea.appendChild(header1);
-//  /*
-//  How to make this ?
-//  <p> Ataba Hotel </p>
-//  <ul>
-//  <li>Beds 2</li>
-//  </ul>
-//  */
-//  var paragragh = document.createElement('p');
-//  paragragh.textContent = ('Ataba Hotel');
-//  var contentArea= document.getElementById('content-area');
-//  contentArea.appendChild(paragragh);
-//  var ul = document.createElement('ul');
-//  contentArea.appendChild(ul);
-//  var li = document.createElement('li');
-//  li.textContent = 'Beds: 2 ';
-//  ul.appendChild(li);
+var Hours = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm'];
 
-
-var hours = [ ["6am: ",], ["7am: ",], ["8am: ",], ["8am: ",], ["9am: ",], ["10am: ",], ["11am: ",], ["12pm: ",],  [" 1pm: ",], [" 2pm: ",], ["3pm: ",], ["4pm: ",], [" 5pm: ",], ["6pm: ",], [" 7pm: ",], ["Total: ",] ];
-
-let Seattle = {
-    minCustomersPerHour: 23,
-    maxCustomersPerHour: 65,
-    averagePerCustomer: 6.3,
-    arrSeattle: [],
-    forEachHour: function (minCustomersPerHour, maxCustomersPerHour) {
-        var range = maxCustomersPerHour - minCustomersPerHour;
-        var rand = (Math.random() * range) + minCustomersPerHour;
-        var final = Math.ceil(rand);
-        return (final);
-    },
-    
-    cookiesPurchased: function () {
-        var hoursSum = 0;
-        for (i = 0; i < 15; i++) {
-            var cookiesPerHour = this.forEachHour(Seattle.minCustomersPerHour, Seattle.maxCustomersPerHour) / Seattle.averagePerCustomer;
-            hours[i][1] = Math.ceil(cookiesPerHour);
-            hoursSum = hoursSum + hours[i][1];
-            hours[15][1] = hoursSum;
-        }
-        
-        return hours;
-    }
-}
-
-
-let Tokyo = {
-    minCustomersPerHour: 3,
-    maxCustomersPerHour: 24,
-    averagePerCustomer: 1.2,
-    arrTokyo: [],
-    forEachHour: function (minCustomersPerHour, maxCustomersPerHour) {
-        var range = maxCustomersPerHour - minCustomersPerHour;
-        var rand = (Math.random() * range) + minCustomersPerHour;
-        var final = Math.ceil(rand);
-        return (final);
+var seattle = {
+    TheMin: 23,
+    TheMax: 65,
+    TheAvg: 6.3,
+    cookiesArray: [],
+    generateRandom: function () {
+        var range = this.TheMax - this.TheMin;
+        var randomNumber = Math.floor(Math.random() * range) + this.TheMin;
+        return randomNumber;
     },
 
-    cookiesPurchased: function () {
-        var hoursSum = 0;
+    amountOfCookiesPerHourFunction: function () {
         for (i = 0; i < 15; i++) {
-            var cookiesPerHour = this.forEachHour(Seattle.minCustomersPerHour, Seattle.maxCustomersPerHour) / Seattle.averagePerCustomer;
-            hours[i][1] = Math.ceil(cookiesPerHour);
-            hoursSum = hoursSum + hours[i][1];
-            hours[15][1] = hoursSum;
+            this.amountOfCookiesCeil = Math.ceil(this.TheAvg * this.generateRandom());
+            this.cookiesArray.push(this.amountOfCookiesCeil);
         }
-
-        return hours;
-    }
-}
-
-let Dubai = {
-    minCustomersPerHour: 11,
-    maxCustomersPerHour: 38,
-    averagePerCustomer: 3.7,
-    forEachHour: function (minCustomersPerHour, maxCustomersPerHour) {
-        var range = maxCustomersPerHour - minCustomersPerHour;
-        var rand = (Math.random() * range) + minCustomersPerHour;
-        var final = Math.ceil(rand);
-        return (final);
+        return this.cookiesArray;
     },
 
-    cookiesPurchased: function () {
-        var hoursSum = 0;
-        for (i = 0; i < 15; i++) {
-            var cookiesPerHour = this.forEachHour(Seattle.minCustomersPerHour, Seattle.maxCustomersPerHour) / Seattle.averagePerCustomer;
-            hours[i][1] = Math.ceil(cookiesPerHour);
-            hoursSum = hoursSum + hours[i][1];
-            hours[15][1] = hoursSum;
-        }
 
-        return hours;
-    }
 }
+seattle.amountOfCookiesPerHourFunction();
 
-let Paris = {
-    minCustomersPerHour: 20,
-    maxCustomersPerHour: 38,
-    averagePerCustomer: 2.3,
-    forEachHour: function (minCustomersPerHour, maxCustomersPerHour) {
-        var range = maxCustomersPerHour - minCustomersPerHour;
-        var rand = (Math.random() * range) + minCustomersPerHour;
-        var final = Math.ceil(rand);
-        return (final);
+var count = 0;
+document.write("<h2>", "Seattle", "</h2>");
+document.write("<ul>");
+for (i = 0; i < 15; i++) {
+    count += seattle.cookiesArray[i];
+    document.write("<li>");
+    document.write(Hours[i], ": ", seattle.cookiesArray[i] +' cookies');
+    document.write("<br>");
+    document.write("</li>");
+}
+document.write("<li>", "Total: ", count + ' cookies');
+document.write("</ul>");
+
+
+
+
+var Tokyo = {
+    TheMin: 3,
+    TheMax: 24,
+    TheAvg: 1.2,
+    cookiesArray: [],
+    generateRandom: function () {
+        var range = this.TheMax - this.TheMin;
+        var randomNumber = Math.floor(Math.random() * range) + this.TheMin;
+        return randomNumber;
     },
 
-    cookiesPurchased: function () {
-        var hoursSum = 0;
+    amountOfCookiesPerHourFunction: function () {
         for (i = 0; i < 15; i++) {
-            var cookiesPerHour = this.forEachHour(Seattle.minCustomersPerHour, Seattle.maxCustomersPerHour) / Seattle.averagePerCustomer;
-            hours[i][1] = Math.ceil(cookiesPerHour);
-            hoursSum = hoursSum + hours[i][1];
-            hours[15][1] = hoursSum;
+            this.amountOfCookiesCeil = Math.ceil(this.TheAvg * this.generateRandom());
+            this.cookiesArray.push(this.amountOfCookiesCeil);
         }
-
-        return hours;
-    }
-}
-
-let Lima = {
-    minCustomersPerHour: 2,
-    maxCustomersPerHour: 16,
-    averagePerCustomer: 4.6,
-    forEachHour: function (minCustomersPerHour, maxCustomersPerHour) {
-        var range = maxCustomersPerHour - minCustomersPerHour;
-        var rand = (Math.random() * range) + minCustomersPerHour;
-        var final = Math.ceil(rand);
-        return (final);
+        return this.cookiesArray;
     },
 
-    cookiesPurchased: function () {
-        var hoursSum = 0;
-        for (i = 0; i < 15; i++) {
-            var cookiesPerHour = this.forEachHour(Seattle.minCustomersPerHour, Seattle.maxCustomersPerHour) / Seattle.averagePerCustomer;
-            hours[i][1] = Math.ceil(cookiesPerHour);
-            hoursSum = hoursSum + hours[i][1];
-            hours[15][1] = hoursSum;
-        }
 
-        return hours;
-    }
 }
+Tokyo.amountOfCookiesPerHourFunction();
 
+var count = 0;
+document.write("<h2>", "Tokyo", "</h2>");
+document.write("<ul>");
+for (i = 0; i < 15; i++) {
+    count += Tokyo.cookiesArray[i];
+    document.write("<li>");
+    document.write(Hours[i], ": ", Tokyo.cookiesArray[i]+ ' cookies');
+    document.write("<br>");
+    document.write("</li>");
+}
+document.write("<li>", "Total: ", count + ' cookies');
+document.write("</ul>");
+
+
+
+
+var Dubai = {
+    TheMin: 11,
+    TheMax: 38,
+    TheAvg: 3.7,
+    cookiesArray: [],
+    generateRandom: function () {
+        var range = this.TheMax - this.TheMin;
+        var randomNumber = Math.floor(Math.random() * range) + this.TheMin;
+        return randomNumber;
+    },
+
+    amountOfCookiesPerHourFunction: function () {
+        for (i = 0; i < 15; i++) {
+            this.amountOfCookiesCeil = Math.ceil(this.TheAvg * this.generateRandom());
+            this.cookiesArray.push(this.amountOfCookiesCeil);
+        }
+        return this.cookiesArray;
+    },
+
+
+}
+Dubai.amountOfCookiesPerHourFunction();
+
+var count = 0;
+document.write("<h2>", "Dubai", "</h2>");
+document.write("<ul>");
+for (i = 0; i < 15; i++) {
+    count += Dubai.cookiesArray[i];
+    document.write("<li>");
+    document.write(Hours[i], ": ", Dubai.cookiesArray[i] + ' cookies');
+    document.write("<br>");
+    document.write("</li>");
+}
+document.write("<li>", "Total: ", count + ' cookies');
+document.write("</ul>");
+
+
+
+
+var Paris = {
+    TheMin: 20,
+    TheMax: 38,
+    TheAvg: 2.3,
+    cookiesArray: [],
+    generateRandom: function () {
+        var range = this.TheMax - this.TheMin;
+        var randomNumber = Math.floor(Math.random() * range) + this.TheMin;
+        return randomNumber;
+    },
+
+    amountOfCookiesPerHourFunction: function () {
+        for (i = 0; i < 15; i++) {
+            this.amountOfCookiesCeil = Math.ceil(this.TheAvg * this.generateRandom());
+            this.cookiesArray.push(this.amountOfCookiesCeil);
+        }
+        return this.cookiesArray;
+    },
+
+
+}
+Paris.amountOfCookiesPerHourFunction();
+
+var count = 0;
+document.write("<h2>", "Paris", "</h2>");
+document.write("<ul>");
+for (i = 0; i < 15; i++) {
+    count += Paris.cookiesArray[i];
+    document.write("<li>");
+    document.write(Hours[i], ": ", Paris.cookiesArray[i] + ' cookies');
+    document.write("<br>");
+    document.write("</li>");
+}
+document.write("<li>", "Total: ", count + ' cookies');
+document.write("</ul>");
+
+
+
+
+var Lima = {
+    TheMin: 2,
+    TheMax: 16,
+    TheAvg: 4.6,
+    cookiesArray: [],
+    generateRandom: function () {
+        var range = this.TheMax - this.TheMin;
+        var randomNumber = Math.floor(Math.random() * range) + this.TheMin;
+        return randomNumber;
+    },
+
+    amountOfCookiesPerHourFunction: function () {
+        for (i = 0; i < 15; i++) {
+            this.amountOfCookiesCeil = Math.ceil(this.TheAvg * this.generateRandom());
+            this.cookiesArray.push(this.amountOfCookiesCeil);
+        }
+        return this.cookiesArray;
+    },
+
+
+}
+Lima.amountOfCookiesPerHourFunction();
+
+var count = 0;
+document.write("<h2>", "Lima", "</h2>");
+document.write("<ul>");
+for (i = 0; i < 15; i++) {
+    count += Lima.cookiesArray[i];
+    document.write("<li>");
+    document.write(Hours[i], ": ", Lima.cookiesArray[i] + ' cookies');
+    document.write("<br>");
+    document.write("</li>");
+}
+document.write("<li>", "Total: ", count + ' cookies');
+document.write("</ul>");
