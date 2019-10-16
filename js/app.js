@@ -69,20 +69,20 @@ function makeFooterRow() { //eslint-disable-line
 var tableRow = document.createElement('tr');
 tableRow.textContent = ' Totals :';
 salesTable.appendChild(tableRow);
-var bigStupidTotal = 0;
+var bigesttotals = 0;
 for (var i = 0; i < hours.length; i++) {
   var hourlyTotal = 0;
   for (var j = 0; j < storeLocations.length; j++) {
     hourlyTotal = hourlyTotal + storeLocations[j].cookiesEachHourArray[i];
-    bigStupidTotal += storeLocations[j].cookiesEachHourArray[i];
-    console.log(bigStupidTotal);
+    bigesttotals += storeLocations[j].cookiesEachHourArray[i];
+    console.log(bigesttotals);
   }
   var tdElement = document.createElement('td');
   tdElement.textContent = hourlyTotal;
   tableRow.appendChild(tdElement);
 }
 tdElement = document.createElement('td');
-tdElement.textContent = bigStupidTotal;
+tdElement.textContent = bigesttotals;
 tableRow.appendChild(tdElement);
 };
 HeaderRow();
